@@ -1,4 +1,7 @@
 var canvas = document.getElementById("canvas");
 var ctx = canvas.getContext("2d");
 
-ctx.fillRect(200, 200, 50, 50);
+function draw() {
+  ctx.fillStyle = '#DC143C'
+  ctx.fillRect(130, 50, 12, 9);
+}
