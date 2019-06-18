@@ -17,6 +17,9 @@ const columns = width/scale;
 //Instaniate all objects
 var snake = new Snake();
 
+
+var update;
+
 //Draws a grid with (scale, scale) as the box size
 function drawGrid() {
   var i;
@@ -62,9 +65,10 @@ window.addEventListener('keydown', ((e) =>{
 
  }))
 
-window.setInterval(() =>  {
+update = window.setInterval(() =>  {
   ctx.clearRect(0, 0, width, height);
   drawGrid();
   snake.move();
   snake.drawSnake();
+  console.log("running");
 }, 150);

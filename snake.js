@@ -32,6 +32,24 @@ function Snake() {
   this.move = function() {
     this.x += this.xSpeed;
     this.y += this.ySpeed;
+
+    if(this.x+(scale/2) >= width){
+      this.x -= scale;
+      window.clearInterval(update);
+    }
+
+    else if(this.x <= 0){
+      window.clearInterval(update);
+    }
+
+    else if(this.y+(scale/2) >= height){
+      this.y -= scale;
+      window.clearInterval(update);
+    }
+
+    else if(this.y <= 0){
+      window.clearInterval(update);
+    }
   }
 
   this.getX = function(){
