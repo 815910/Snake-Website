@@ -17,7 +17,7 @@ const columns = width/scale;
 //Instaniate all objects
 var snake = new Snake();
 
-
+//Draws a grid with (scale, scale) as the box size
 function drawGrid() {
   var i;
   //Draws rows
@@ -34,24 +34,37 @@ function drawGrid() {
       ctx.beginPath();
       ctx.lineWidth = ".5";
       ctx.strokeStyle = "#000";
-      ctx.moveTo(scale*(i+1)+0.5, 0);
-      ctx.lineTo(scale*(i+1)+0.5, height);
+      ctx.moveTo(scale*(i+1), 0);
+      ctx.lineTo(scale*(i+1), height);
       ctx.stroke();
+  }
+}
+drawGrid();
+snake.setX(150);
+snake.setY(70);
+snake.drawSnake();
+
+//Checks if arrow keys are pressed and moves snake in that direction
+window.addEventListener('keydown', ((e) =>{
+  if(e.key == 'ArrowUp'){
+      snake.changeDirection('Up');
+  }
+  else if(e.key == 'ArrowDown'){
+      snake.changeDirection('Down');
+  }
+  else if(e.key == 'ArrowLeft'){
+      snake.changeDirection('Left');
+  }
+  else if(e.key == 'ArrowRight'){
+      snake.changeDirection('Right');
   }
 
 
+ }))
 
-}
-
-function draw() {
-  snake.drawSnake();
+window.setInterval(() =>  {
+  ctx.clearRect(0, 0, width, height);
   drawGrid();
-  console.log(columns);
-}
-
-draw();
-
-
-// function move() {
-//
-// }
+  snake.move();
+  snake.drawSnake();
+}, 150);

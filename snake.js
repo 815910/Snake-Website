@@ -1,11 +1,37 @@
 function Snake() {
-  this.x = 150;
-  this.y = 70;
+  this.x = 0;
+  this.y = 0;
+  this.xSpeed = 0;
+  this.ySpeed = 0;
 
   //Draws a red colored snake at x, y, to the scale
   this.drawSnake = function() {
     ctx.fillStyle = '#DC143C';
     ctx.fillRect(this.x, this.y, scale, scale);
+  }
+
+  this.changeDirection = function(dir) {
+    if(dir == 'Up'){
+      this.xSpeed = 0;
+      this.ySpeed = -10;
+    }
+    else if(dir == 'Down'){
+      this.xSpeed = 0;
+      this.ySpeed = 10;
+    }
+    else if(dir == 'Left'){
+      this.xSpeed = -10;
+      this.ySpeed = 0;
+    }
+    else if(dir == 'Right'){
+      this.xSpeed = 10;
+      this.ySpeed = 0;
+    }
+  }
+
+  this.move = function() {
+    this.x += this.xSpeed;
+    this.y += this.ySpeed;
   }
 
   this.getX = function(){
@@ -14,5 +40,21 @@ function Snake() {
 
   this.getY = function(){
     return this.y;
+  }
+
+  this.setX = function(newX){
+    this.x = newX;
+  }
+
+  this.setY = function(newY){
+    this.y = newY;
+  }
+
+  this.getXSpeed = function(){
+    return this.xSpeed;
+  }
+
+  this.getYSpeed = function(){
+    return this.ySpeed;
   }
 }
