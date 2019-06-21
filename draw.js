@@ -16,9 +16,20 @@ const rows = height/scale;
 const columns = width/scale;
 //Instaniate all objects
 var snake = new Snake();
+var apple = new Apple();
+
+var eaten = false;
 
 
-var update;
+
+(function setup() {
+  drawGrid();
+  snake.setX(150);
+  snake.setY(70);
+  apple.setRandomLocation();
+  apple.drawApple();
+  snake.drawSnake();
+}())
 
 //Draws a grid with (scale, scale) as the box size
 function drawGrid() {
@@ -44,10 +55,8 @@ function drawGrid() {
 }
 
 
-drawGrid();
-snake.setX(150);
-snake.setY(70);
-snake.drawSnake();
+
+
 
 //Checks if arrow keys are pressed and moves snake in that direction
 window.addEventListener('keydown', ((e) =>{
@@ -63,14 +72,16 @@ window.addEventListener('keydown', ((e) =>{
   else if(e.key == 'ArrowRight'){
       snake.changeDirection('Right');
   }
+}))
 
-
- }))
-
+//Reocurring loop (runs every 150 ms)
 update = window.setInterval(() =>  {
   ctx.clearRect(0, 0, width, height);
   drawGrid();
   snake.move();
+  apple.checkEaten(snake);
+  apple.moveApple(eaten);
+  apple.drawApple();
   snake.drawSnake();
   console.log("running");
 }, 150);

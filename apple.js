@@ -3,7 +3,48 @@ function Apple() {
   this.y = 0;
 
 
-  
+  //Draws a black square in one grid space at the x and y
+  this.drawApple = function() {
+    ctx.fillStyle = '#000';
+    ctx.fillRect(this.x, this.y, scale, scale);
+  }
 
+  this.moveApple = function(eaten) {
+    if(eaten){
+    this.setRandomLocation();
+      eaten = false;
+    }
+  }
+
+  this.setRandomLocation = function() {
+    this.x = (Math.floor(Math.random()*30))*10;
+    this.y = (Math.floor(Math.random()*15))*10;
+  }
+
+  this.checkEaten = function(snake) {
+    if((snake.getX() == this.x) && (snake.getY() == this.y)){
+      eaten = true;
+    }
+    else {
+      eaten = false;
+    }
+  }
+
+
+  this.getX = function(){
+    return this.x;
+  }
+
+  this.getY = function(){
+    return this.y;
+  }
+
+  this.setX = function(newX){
+    this.x = newX;
+  }
+
+  this.setY = function(newY){
+    this.y = newY;
+  }
 
 }
