@@ -11,19 +11,19 @@ function Snake() {
   }
 
   this.changeDirection = function(dir) {
-    if(dir == 'Up'){
+    if(dir == 'Up' && this.ySpeed !== 10){
       this.xSpeed = 0;
       this.ySpeed = -10;
     }
-    else if(dir == 'Down'){
+    else if(dir == 'Down' && this.ySpeed !== -10){
       this.xSpeed = 0;
       this.ySpeed = 10;
     }
-    else if(dir == 'Left'){
+    else if(dir == 'Left' && this.xSpeed !== 10){
       this.xSpeed = -10;
       this.ySpeed = 0;
     }
-    else if(dir == 'Right'){
+    else if(dir == 'Right' && this.xSpeed !== -10){
       this.xSpeed = 10;
       this.ySpeed = 0;
     }

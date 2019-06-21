@@ -42,6 +42,8 @@ function drawGrid() {
       ctx.stroke();
   }
 }
+
+
 drawGrid();
 snake.setX(150);
 snake.setY(70);
