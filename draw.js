@@ -15,20 +15,23 @@ const scale = 10;
 const rows = height/scale;
 const columns = width/scale;
 //Instaniate all objects
-var snake = new Snake();
+var snake = new Array();
+snake.push(new Snake());
 var apple = new Apple();
 
 var eaten = false;
+var eatenOne = false;
+var direction = null;
 
 
 
 (function setup() {
   drawGrid();
-  snake.setX(150);
-  snake.setY(70);
+  snake[0].setX(150);
+  snake[0].setY(70);
   apple.setRandomLocation();
   apple.drawApple();
-  snake.drawSnake();
+  snake[0].drawSnake(snake);
 }())
 
 //Draws a grid with (scale, scale) as the box size
@@ -61,16 +64,20 @@ function drawGrid() {
 //Checks if arrow keys are pressed and moves snake in that direction
 window.addEventListener('keydown', ((e) =>{
   if(e.key == 'ArrowUp'){
-      snake.changeDirection('Up');
+      snake[0].changeDirection(snake, 'Up');
+      direction = 'Up';
   }
   else if(e.key == 'ArrowDown'){
-      snake.changeDirection('Down');
+      snake[0].changeDirection(snake, 'Down');
+      direction = 'Down';
   }
   else if(e.key == 'ArrowLeft'){
-      snake.changeDirection('Left');
+      snake[0].changeDirection(snake, 'Left');
+      direction = 'Left'
   }
   else if(e.key == 'ArrowRight'){
-      snake.changeDirection('Right');
+      snake[0].changeDirection(snake, 'Right');
+      direction = 'Right'
   }
 }))
 
@@ -78,10 +85,10 @@ window.addEventListener('keydown', ((e) =>{
 update = window.setInterval(() =>  {
   ctx.clearRect(0, 0, width, height);
   drawGrid();
-  snake.move();
+  snake[0].move(snake);
   apple.checkEaten(snake);
   apple.moveApple(eaten);
   apple.drawApple();
-  snake.drawSnake();
-  console.log("running");
+  snake[0].drawSnake(snake);
+  //console.log(snake.length);
 }, 150);

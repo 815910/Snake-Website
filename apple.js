@@ -11,7 +11,7 @@ function Apple() {
 
   this.moveApple = function(eaten) {
     if(eaten){
-    this.setRandomLocation();
+      this.setRandomLocation();
       eaten = false;
     }
   }
@@ -22,8 +22,10 @@ function Apple() {
   }
 
   this.checkEaten = function(snake) {
-    if((snake.getX() == this.x) && (snake.getY() == this.y)){
+    if((snake[0].getX() == this.x) && (snake[0].getY() == this.y)){
+      eatenOne = true;
       eaten = true;
+      snake[0].grow(snake, direction);
     }
     else {
       eaten = false;
