@@ -5,7 +5,7 @@ function Apple() {
 
   //Draws a black square in one grid space at the x and y
   this.drawApple = function() {
-    ctx.fillStyle = '#000';
+    ctx.fillStyle = '#DC143C';
     ctx.fillRect(this.x, this.y, scale, scale);
   }
 
@@ -25,6 +25,7 @@ function Apple() {
     if((snake[0].getX() == this.x) && (snake[0].getY() == this.y)){
       eatenOne = true;
       eaten = true;
+      score++;
       snake[0].grow(snake, direction);
     }
     else {

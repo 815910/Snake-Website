@@ -8,8 +8,8 @@ const pxHeight = 600;
 canvas.style.setProperty('--canvas-width', pxWidth + 'px');
 canvas.style.setProperty('--canvas-height', pxHeight + 'px');
 //Real width and height
-const width = 300;
-const height = 150;
+const width = pxWidth/3;
+const height = pxHeight/4;
 //Sets the scale and number of rows and columns
 const scale = 10;
 const rows = height/scale;
@@ -22,8 +22,10 @@ var apple = new Apple();
 var eaten = false;
 var eatenOne = false;
 var direction = null;
+var die = false;
+var score = 0;
 
-
+//*******MAKE SCORE
 
 (function setup() {
   drawGrid();
@@ -58,7 +60,11 @@ function drawGrid() {
 }
 
 
-
+function showScore() {
+  ctx.fillStyle = "#000";
+  ctx.font = "10px sans-serif";
+  ctx.fillText("Score: " + score, 10, 10);
+}
 
 
 //Checks if arrow keys are pressed and moves snake in that direction
@@ -85,10 +91,12 @@ window.addEventListener('keydown', ((e) =>{
 update = window.setInterval(() =>  {
   ctx.clearRect(0, 0, width, height);
   drawGrid();
+  showScore();
   snake[0].move(snake);
+  snake[0].checkDie(snake);
   apple.checkEaten(snake);
   apple.moveApple(eaten);
   apple.drawApple();
   snake[0].drawSnake(snake);
-  //console.log(snake.length);
+  console.log(score);
 }, 150);

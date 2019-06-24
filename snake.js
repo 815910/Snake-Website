@@ -9,8 +9,9 @@ function Snake() {
   //Draws a red colored snake at x, y, to the scale
   this.drawSnake = function(snake) {
     var i;
-    ctx.fillStyle = '#DC143C';
+    ctx.fillStyle = '#0000cc';
     for(i = 0; i < snake.length; i++){
+      ctx.strokeRect(snake[i].getX(), snake[i].getY(), scale, scale);
       ctx.fillRect(snake[i].getX(), snake[i].getY(), scale, scale);
     }
   }
@@ -42,29 +43,14 @@ function Snake() {
         snake[0].setYSpeed(0);
 
     }
-    //Sets speed of segment in front if speed of segment in front is different
-    // for(i = 1; i < snake.length; i++){
-    //
-    //   if(snake.length > 1 && (snake[0].getXSpeed() !== 0 || snake[0].getYSpeed() !== 0)){
-    //     var totalSpeedInFront = snake[i-1].getXSpeed() + snake[i-1].getYSpeed();
-    //     var totalSpeed =  snake[i].getXSpeed() + snake[i].getYSpeed();
-    //     console.log(totalSpeed)
-    //     if(totalSpeedInFront !== totalSpeed){
-    //       snake[i].setXSpeed(snake[i-1].getXSpeed());
-    //       snake[i].setYSpeed(snake[i-1].getYSpeed());
-    //     }
-    //   }
-    // }
+
 
   }
 
 
   this.move = function(snake) {
     var i;
-    // for(i = 0; i < snake.length; i++){
-    //   snake[i].setX(snake[i].getX() + snake[i].getXSpeed());
-    //   snake[i].setY(snake[i].getY() + snake[i].getYSpeed());
-    // }
+
     if(eatenOne == true){
       this.oldXLocations(snake);
       this.oldYLocations(snake);
@@ -74,113 +60,78 @@ function Snake() {
     snake[0].setX(snake[0].getX() + snake[0].getXSpeed());
     snake[0].setY(snake[0].getY() + snake[0].getYSpeed());
 
-    // var up = -10;
-    // var down = 10;
-    // var left = -10;
-    // var right = 10;
-    // var move = false;
-    // //sets X or Y of tail based on direction previous segment is going
-    //   for(i = 1; i < snake.length; i++){
-    //   if(snake[i-1].getYSpeed() == up) {
-    //     snake[i].setX(snake[i-1].getX());
-    //     snake[i].setY(snake[i-1].getY()+scale);
-    //   }
-    //   else if(snake[i-1].getYSpeed() == down) {
-    //     snake[i].setX(snake[i-1].getX());
-    //     snake[i].setY(snake[i-1].getY()-scale);
-    //   }
-    //   else if(snake[i-1].getXSpeed() == left) {
-    //     snake[i].setX(snake[i-1].getX()+scale);
-    //     snake[i].setY(snake[i-1].getY());
-    //   }
-    //   else if(snake[i-1].getXSpeed() == right) {
-    //     snake[i].setX(snake[i-1].getX()-scale);
-    //     snake[i].setY(snake[i-1].getY());
-    //   }
-    // }
-
     this.moveTail(snake, this.snakeXLocations, this.snakeYLocations);
 
-
-      // //sets X or Y of tail based on where the previous segment is
-      // for(i = 2; i < snake.length; i++){
-      // //Up
-      // if(snake[i-1].getY() < snake[i].getY()) {
-      //   snake[i].setX(snake[i-1].getX());
-      //   snake[i].setY(snake[i-1].getY()+scale);
-      // }
-      // //Down
-      // else if(snake[i-1].getY() > snake[i].getY()) {
-      //   snake[i].setX(snake[i-1].getX());
-      //   snake[i].setY(snake[i-1].getY()-scale);
-      // }
-      // //Left
-      // else if(snake[i-1].getX() < snake[i].getX()) {
-      //   snake[i].setX(snake[i-1].getX()+scale);
-      //   snake[i].setY(snake[i-1].getY());
-      // }
-      // //Right
-      // else if(snake[i-1].getX() > snake[i].getX()) {
-      //   snake[i].setX(snake[i-1].getX()-scale);
-      //   snake[i].setY(snake[i-1].getY());
-      // }
-      //
-      //
-      // console.log("length = " + snake.length);
-      // }
-
+}
     //Checks if snake ran into wall
     //****If length is greater than 1 snake will move into wall
+    this.checkDie = function(snake) {
+    //Right
     if(snake[0].getX()+(scale/2) >= width){
-      snake[0].setX(width-(scale));
-      window.clearInterval(update);
+      if(snake.length == 1){
+        snake[0].setX(width-(scale));
+      }
+      else if(snake.length > 1){
+        snake[0].setX(width-(scale*2));
+      }
+      die = true;
     }
-
+    //Left
     else if(snake[0].getX() <= 0){
-      window.clearInterval(update);
+      die = true;
     }
-
+    //Down
     else if(snake[0].getY()+(scale/2) >= height){
-      snake[0].setY(snake[0].getY() - scale);
-      window.clearInterval(update);
+      if(snake.length == 1){
+        snake[0].setY(snake[0].getY() - scale);
+      }
+      else if(snake.length > 1){
+        snake[0].setY(snake[0].getY() - (scale*2));
+      }
+      die = true;
+    }
+    //Up
+    else if(snake[0].getY() <= 0){
+
+      die = true;
     }
 
-    else if(snake[0].getY() <= 0){
-      window.clearInterval(update);
-    }
+
+      var i;
+      var j;
+      for(i = 0; i < snake.length; i++){
+        for(j = 0; j < snake.length; j++){
+          if(i !== j){
+            if(snake[i].getX() == snake[j].getX() && snake[i].getY() == snake[j].getY()){
+              die = true;
+            }
+          }
+        }
+      }
+
+      this.dieScreen();
+
   }
 
   this.moveTail = function(snake, snakeXLocations, snakeYLocations) {
-
       var i;
       for(i = 1; i < snake.length; i++){
-        console.log(snake.length);
         snake[i].setX(snakeXLocations[snakeXLocations.length-i]);
         snake[i].setY(snakeYLocations[snakeYLocations.length-i]);
       }
 
-
-
   }
 
   this.oldXLocations = function(snake) {
-
-    var i;
-    for(i = 0; i < 1; i++){
-      this.snakeXLocations.push(snake[i].getX());
-    }
-
-
+      this.snakeXLocations.push(snake[0].getX());
   }
 
+  //Records Y location of head of snake
   this.oldYLocations = function(snake) {
-    var i;
-    for(i = 0; i < 1; i++){
-      this.snakeYLocations.push(snake[i].getY());
-    }
-
+      this.snakeYLocations.push(snake[0].getY());
   }
 
+  //Adds new snake to array in correct direction
   this.grow = function(snake, direction) {
     snake.push(new Snake());
     var newSegment = snake.length-1;
@@ -202,6 +153,15 @@ function Snake() {
     else if(direction == 'Right') {
       snake[newSegment].setX(oldSegmentX+scale);
       snake[newSegment].setY(oldSegmentY);
+    }
+  }
+
+
+
+  this.dieScreen = function() {
+    if(die == true){
+      alert("Game Over. Press CTRL + R or refresh the page to restart.");
+      window.clearInterval(update);
     }
   }
 
