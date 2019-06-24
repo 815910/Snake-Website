@@ -8,8 +8,8 @@ const pxHeight = 600;
 canvas.style.setProperty('--canvas-width', pxWidth + 'px');
 canvas.style.setProperty('--canvas-height', pxHeight + 'px');
 //Real width and height
-const width = pxWidth/3;
-const height = pxHeight/4;
+const width = 300;
+const height = 150;
 //Sets the scale and number of rows and columns
 const scale = 10;
 const rows = height/scale;

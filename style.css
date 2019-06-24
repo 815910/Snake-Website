@@ -4,8 +4,8 @@
 }
 
 :root{
-  --canvas-width: 900px;
-  --canvas-height: 900px;
+  --canvas-width: 100px;
+  --canvas-height: 100px;
 }
 
 #canvas {
