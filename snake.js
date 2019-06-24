@@ -77,7 +77,7 @@ function Snake() {
       die = true;
     }
     //Left
-    else if(snake[0].getX() <= 0){
+    else if(snake[0].getX() <= -10){
       die = true;
     }
     //Down
@@ -91,7 +91,7 @@ function Snake() {
       die = true;
     }
     //Up
-    else if(snake[0].getY() <= 0){
+    else if(snake[0].getY() <= -10){
 
       die = true;
     }
