@@ -44,8 +44,8 @@ function drawGrid() {
       ctx.beginPath();
       ctx.lineWidth = ".5";
       ctx.strokeStyle = "black";
-      ctx.moveTo(0, scale*(i+1));
-      ctx.lineTo(width, scale*(i+1));
+      ctx.moveTo(0, scale*(i+1)+0.5);
+      ctx.lineTo(width, scale*(i+1)+0.5);
       ctx.stroke();
   }
   //Draws columns
@@ -53,18 +53,12 @@ function drawGrid() {
       ctx.beginPath();
       ctx.lineWidth = ".5";
       ctx.strokeStyle = "#000";
-      ctx.moveTo(scale*(i+1), 0);
-      ctx.lineTo(scale*(i+1), height);
+      ctx.moveTo(scale*(i+1)+0.5, 0);
+      ctx.lineTo(scale*(i+1)+0.5, height);
       ctx.stroke();
   }
 }
 
-
-function showScore() {
-  ctx.fillStyle = "#000";
-  ctx.font = "10px sans-serif";
-  ctx.fillText("Score: " + score, 10, 10);
-}
 
 
 //Checks if arrow keys are pressed and moves snake in that direction
@@ -91,12 +85,12 @@ window.addEventListener('keydown', ((e) =>{
 update = window.setInterval(() =>  {
   ctx.clearRect(0, 0, width, height);
   drawGrid();
-  showScore();
   snake[0].move(snake);
   snake[0].checkDie(snake);
   apple.checkEaten(snake);
   apple.moveApple(eaten);
   apple.drawApple();
   snake[0].drawSnake(snake);
+  document.getElementById("score").innerHTML = 'Score: '+score;
   console.log(score);
 }, 150);

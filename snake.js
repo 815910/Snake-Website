@@ -11,8 +11,8 @@ function Snake() {
     var i;
     ctx.fillStyle = '#0000cc';
     for(i = 0; i < snake.length; i++){
-      ctx.strokeRect(snake[i].getX(), snake[i].getY(), scale, scale);
-      ctx.fillRect(snake[i].getX(), snake[i].getY(), scale, scale);
+      ctx.strokeRect(snake[i].getX()+.5, snake[i].getY()+.5, scale, scale);
+      ctx.fillRect(snake[i].getX()+.5, snake[i].getY()+.5, scale, scale);
     }
   }
 
@@ -109,7 +109,7 @@ function Snake() {
         }
       }
 
-      this.dieScreen();
+      this.resetGame();
 
   }
 
@@ -158,7 +158,7 @@ function Snake() {
 
 
 
-  this.dieScreen = function() {
+  this.resetGame = function() {
     if(die == true){
       alert("Game Over. Press CTRL + R or refresh the page to restart.");
       window.clearInterval(update);

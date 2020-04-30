@@ -1,6 +1,8 @@
-#header {
-  color: red;
+
+.heading {
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
   text-align: center;
+
 }
 
 :root{
@@ -17,6 +19,12 @@
   height: var(--canvas-height);
   border: 3px solid #000;
   background: #008000;
+}
 
+#score {
+  font-size: 65%;
+}
 
+body {
+  background-color: #FB9898;
 }

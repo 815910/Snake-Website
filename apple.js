@@ -6,7 +6,7 @@ function Apple() {
   //Draws a black square in one grid space at the x and y
   this.drawApple = function() {
     ctx.fillStyle = '#DC143C';
-    ctx.fillRect(this.x, this.y, scale, scale);
+    ctx.fillRect(this.x+.75, this.y+.75, scale-.5, scale-.5);
   }
 
   this.moveApple = function(eaten) {
