@@ -5,12 +5,22 @@
     <title>Play Snake</title>
   </head>
   <body>
+
     <div class="heading">
+
 <h1 class="header">Play Snake<h1>
+
+  <div class="smallHeading">
+  <p>Created By: <a href="https://github.com/asteele5" target="_blank">Alexander Steele</a></p>
   <p id="score"></p>
 </div>
-<!-- <button type="button" name="button" onclick=""></button> -->
+
+<button type="button" name="button" id="resetButton" onclick="resetGame();">Reset</button>
+<button type="button" name="colorButton" id="colorButton" class="colorButton" onclick="changeColor();">Change Color</button>
   <canvas id="canvas"></canvas>
+
+
+
   </body>
   <link rel="stylesheet" href="style.css">
   <script type="text/javascript" src="snake.js"></script>

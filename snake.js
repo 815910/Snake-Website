@@ -7,9 +7,9 @@ function Snake() {
   this.snakeYLocations = new Array();
 
   //Draws a red colored snake at x, y, to the scale
-  this.drawSnake = function(snake) {
+  this.drawSnake = function(snake, color) {
     var i;
-    ctx.fillStyle = '#0000cc';
+    ctx.fillStyle = color;
     for(i = 0; i < snake.length; i++){
       ctx.strokeRect(snake[i].getX()+.5, snake[i].getY()+.5, scale, scale);
       ctx.fillRect(snake[i].getX()+.5, snake[i].getY()+.5, scale, scale);
@@ -108,8 +108,11 @@ function Snake() {
           }
         }
       }
-
-      this.resetGame();
+      if(die){
+      window.clearInterval(update);
+      canvas.style.opacity = ".5";
+      window.setTimeout(function(){alert("Game Over. Press \"Reset\" to play again!");}, 250);
+    }
 
   }
 
@@ -156,14 +159,25 @@ function Snake() {
     }
   }
 
-
-
-  this.resetGame = function() {
-    if(die == true){
-      alert("Game Over. Press CTRL + R or refresh the page to restart.");
-      window.clearInterval(update);
+  this.resetSnake = function(snake){
+    while(snake.length > 1){
+      snake.pop();
+    }
+    die = false;
+    direction = null;
+    snake[0].setXSpeed(0);
+    snake[0].setYSpeed(0);
+    while(this.snakeXLocations.length > 1){
+      this.snakeXLocations.pop();
+    }
+    while(this.snakeYLocations.length > 1){
+      this.snakeYLocations.pop();
     }
   }
+
+
+
+
 
   this.getX = function(){
     return this.x;

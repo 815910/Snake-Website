@@ -2,7 +2,10 @@
 .heading {
   font-family: "Trebuchet MS", Helvetica, sans-serif;
   text-align: center;
+}
 
+.header {
+  font-size: 50px;
 }
 
 :root{
@@ -10,8 +13,13 @@
   --canvas-height: 100px;
 }
 
+.smallHeading {
+  font-size: 55%;
+}
+
 #canvas {
   padding: 0;
+  margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
   display: block;
@@ -21,10 +29,19 @@
   background: #008000;
 }
 
-#score {
-  font-size: 65%;
-}
 
 body {
   background-color: #FB9898;
+}
+
+button{
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #008000;
+  border-color: #008000;
+}
+
+.colorButton {
+  margin-left: 10px;
 }

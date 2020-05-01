@@ -4,8 +4,8 @@ function Apple() {
 
 
   //Draws a black square in one grid space at the x and y
-  this.drawApple = function() {
-    ctx.fillStyle = '#DC143C';
+  this.drawApple = function(color) {
+    ctx.fillStyle = color;
     ctx.fillRect(this.x+.75, this.y+.75, scale-.5, scale-.5);
   }
 
