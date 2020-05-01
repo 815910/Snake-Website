@@ -42,6 +42,30 @@ button{
   border-color: #008000;
 }
 
+#resetButton:hover {
+  width: 90px;
+  height: 60px;
+}
+
+#resetButton {
+  width: 75px;
+  height: 50px;
+  transition:width .5s, height .5s ease;
+}
+
 .colorButton {
   margin-left: 10px;
+  width: 150px;
+  height: 50px;
+  transition:width .5s, height .5s ease;
+  /* display: table-cell;
+  vertical-align: middle;
+  line-height: 50%; */
+  padding: 5px;
+}
+
+.colorButton:hover{
+  /* width: 150px; */
+  width: 170px;
+  height: 60px;
 }

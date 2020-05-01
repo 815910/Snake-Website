@@ -32,8 +32,8 @@ var appleColor = "red";
 
 function setup() {
   drawGrid();
-  snake[0].setX(150);
-  snake[0].setY(70);
+  snake[0].setX(width/2);
+  snake[0].setY(height/2-5);
   snake[0].setXSpeed(0);
   snake[0].setYSpeed(0);
   apple.setRandomLocation();
