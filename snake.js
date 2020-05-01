@@ -22,24 +22,24 @@ function Snake() {
     if(dir == 'Up' && this.ySpeed !== 10){
 
           snake[0].setXSpeed(0);
-          snake[0].setYSpeed(-10);
+          snake[0].setYSpeed(-scale);
 
       }
     else if(dir == 'Down' && this.ySpeed !== -10){
 
         snake[0].setXSpeed(0);
-        snake[0].setYSpeed(10);
+        snake[0].setYSpeed(scale);
 
     }
     else if(dir == 'Left' && this.xSpeed !== 10){
 
-        snake[0].setXSpeed(-10);
+        snake[0].setXSpeed(-scale);
         snake[0].setYSpeed(0);
 
     }
     else if(dir == 'Right' && this.xSpeed !== -10){
 
-        snake[0].setXSpeed(10);
+        snake[0].setXSpeed(scale);
         snake[0].setYSpeed(0);
 
     }

@@ -11,14 +11,14 @@ function Apple() {
 
   this.moveApple = function(eaten) {
     if(eaten){
-      this.setRandomLocation();
+      this.setRandomLocation(scale);
       eaten = false;
     }
   }
 
-  this.setRandomLocation = function() {
-    this.x = (Math.floor(Math.random()*30))*10;
-    this.y = (Math.floor(Math.random()*15))*10;
+  this.setRandomLocation = function(scale) {
+    this.x = (Math.floor(Math.random()*width/scale))*scale;
+    this.y = (Math.floor(Math.random()*height/scale))*scale;
   }
 
   this.checkEaten = function(snake) {
